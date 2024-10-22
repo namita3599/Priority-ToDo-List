@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="todo-container">
+        <h1>My Priority To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add a new task..." />
+        <select id="prioritySelect">
+            <option value="3">Low</option>
+            <option value="2">Medium</option>
+            <option value="1">High</option>
+        </select>
+
+        <div class="button-container">
+        <button onclick="addTask()">Add Task</button>
+        </div>
+        <ul id="taskList"></ul>
+
+    </div>
+
+    <div id="message" class="hidden"><b>Great!</b></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

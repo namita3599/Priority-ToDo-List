@@ -1,0 +1,269 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.todo-container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.todo-container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    font-size: 2 rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+input[type="text"], select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 10px; 
+}
+
+button {
+    width: auto; 
+    padding: 10px 20px; 
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 14px; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.4);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    overflow: hidden; 
+}
+
+li span {
+    flex-grow: 1; /* Allow the text to take up available space */
+    margin-right: 10px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal;
+    max-width: calc(100% - 200px); 
+}
+
+li button {
+    flex-shrink: 0; 
+    margin-left: 5px;
+    min-width: 20px;
+}
+
+li:hover {
+    background-color: #e9ecef;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: rgb(0, 0, 0);
+    background-color: #d4edda; 
+}
+
+button.delete {
+    width: 60px;
+    background-color: #dc3545; 
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.6), 0 0 20px rgba(220, 53, 69, 0.4);
+}
+
+button.done {
+    width: 55px;
+    background-color: #007bff; 
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+button.done:hover {
+    background-color: #0056b3;
+}
+
+/* .priority-btn.completed, */
+button.done.completed,
+button.delete.completed{
+    opacity: 0.8;
+}
+
+button.done,
+button.delete{
+    margin-left: 10px;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+/* Styling for priority button*/
+.priority-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px; 
+    margin-right: 5px;
+}
+
+.priority-btn:hover {
+    color: #28a745; /* Highlight when hovered */
+}
+
+/* Hide dropdown initially */
+li select {
+    display: none;
+}
+
+/* High Priority */
+.priority-high {
+    background-color: #f8d7da;
+    border-left: 5px solid #dc3545;
+    color: #721c24; 
+}
+
+/* Medium Priority */
+.priority-medium {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    color: #856404;
+}
+
+/* Low Priority */
+.priority-low {
+    background-color: #d4edda;
+    border-left: 5px solid #28a745; 
+    color: #155724; 
+}
+
+/* Small pencil icon (edit button) */
+.edit-btn {
+    padding:10px;
+    width: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px; 
+    margin-left: 10px;
+}
+
+#message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5em;
+    color: #032956; 
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Prevent interaction */
+    text-shadow: 
+    0 0 10px #e22674, 
+    0 0 20px #e22674, 
+    0 0 30px #e22674, 
+    0 0 40px #97097f,  
+    0 0 50px #97097f; 
+}
+
+#message.show {
+    opacity: 1; /* Make it visible */
+    animation: fadeInOut 2s ease-in-out forwards; /* Animation */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Animation for fading in the list items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .todo-container {
+        width: 90%; /* Change from fixed 600px to a percentage */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Smaller font for smaller screens */
+    }
+
+    button {
+        width: 80px; /* Smaller buttons on mobile */
+    }
+
+    input[type="text"], select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    li {
+        padding: 5px; /* Less padding for smaller screens */
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
